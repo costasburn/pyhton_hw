@@ -12,7 +12,7 @@ new_died_month = int(died_month)
 new_died_day = int(died_day)
 
 
-if ((new_died_month - new_born_month) > 0) or ((new_died_month - new_born_month) == 0 and (int(new_died_day - new_born_day) >= 0)):
+if new_died_month - new_born_month > 0 or new_died_month - new_born_month == 0 and (new_died_day - new_born_day >= 0):
     age = new_died_year - new_born_year
 else:
     age = new_died_year - new_born_year - 1
