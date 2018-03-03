@@ -13,4 +13,4 @@ b = 4
 area, perimetr = triangle_square_and_perimeter(a, b)
 
 
-print("Площадь равнобедоенного триугольника с катетами {} и {} равняется {}. А его периметр - {}".format(a, b, area, perimetr))
+print("Площадь прямоугольного триугольника с катетами {} и {} равняется {}. А его периметр - {}".format(a, b, area, perimetr))
