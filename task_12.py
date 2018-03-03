@@ -1,7 +1,6 @@
 def sum_of_digits(number):
     iterator_number = iter(number)
-    result = 0
-    result += int(next(iterator_number)) + int(next(iterator_number)) + int(next(iterator_number))
+    result = int(next(iterator_number)) + int(next(iterator_number)) + int(next(iterator_number))
     return result
 
 
