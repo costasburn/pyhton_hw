@@ -1,8 +1,8 @@
 def is_even(number):
     if (number % 2) == 0:
-        return 1
+        return True
     else:
-        return None
+        return False
 
 
 number = int(input("Please enter the number you want to test: "))
