@@ -1,5 +1,7 @@
+import math
+
 def degrees2radians(degrees):
-    ratio = 0.0174533
+    ratio = math.pi / 180
     radians = float(degrees) * ratio
     return radians
 
