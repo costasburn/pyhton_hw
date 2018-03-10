@@ -6,10 +6,10 @@ def solve_quadratic_equation(a, b, c):
     if discriminant > 0:
         x1, x2 = (-b + math.sqrt(discriminant)) / (2 * a), (-b - math.sqrt(discriminant)) / (2 * a)
     elif discriminant == 0:
-        x1, x2 = (-b + math.sqrt(discriminant))
+        x1 = x2 = (-b + math.sqrt(discriminant))
         return x1
     else:
-        x1, x2 = None, None
+        x1 = x2 = None
     return x1, x2
 
 
