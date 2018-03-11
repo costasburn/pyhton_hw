@@ -5,13 +5,13 @@ def group_by_surname(list_of_enrollees):
     u_z = []
     for i in list_of_enrollees:
         name, surname = i.rsplit()
-        if ord(surname[:1]) <= 73:
+        if ord(surname[:1]) <= ord('I'):
             a_i.append(i)
-        elif ord(surname[:1]) > 73 and ord(surname[:1]) <= 80:
+        elif ord(surname[:1]) > ord('I') and ord(surname[:1]) <= ord('P'):
             j_p.append(i)
-        elif ord(surname[:1]) > 80 and ord(surname[:1]) <= 84:
+        elif ord(surname[:1]) > ord('P') and ord(surname[:1]) <= ord('T'):
             q_t.append(i)
-        elif ord(surname[:1]) > 84 and ord(surname[:1]) <= 90:
+        elif ord(surname[:1]) > ord('T') and ord(surname[:1]) <= ord('Z'):
             u_z.append(i)
     return len(a_i), len(j_p), len(q_t), len(u_z)
 
