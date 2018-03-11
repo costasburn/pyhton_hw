@@ -6,6 +6,6 @@ def get_max_digit(number):
     return max(converted_digit)
 
 
-number = random.randint(100000000000, 999999999999)
+number = random.randint(1e11, 1e12-1)
 
 print(get_max_digit(number))
