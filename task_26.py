@@ -1,15 +1,13 @@
 import random
+from collections import Counter
 
 
 def calc_frequency(lst):
-    if lst.count(-1) > lst.count(0) and lst.count(-1) > lst.count(1):
-        return -1
-    elif lst.count(0) > lst.count(-1) and lst.count(0) > lst.count(1):
-        return 0
-    elif lst.count(1) > lst.count(-1) and lst.count(1) > lst.count(0):
-        return 1
-    else:
+    newlist = Counter(lst)
+    if newlist[0] == newlist[1] or newlist[0] == newlist[2] or newlist[1] == newlist[2]:
         return None
+    else:
+        return max(lst)
 
 
 lst = []
