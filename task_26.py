@@ -3,8 +3,8 @@ from collections import Counter
 
 
 def calc_frequency(lst):
-    counted_lst = Counter(lst)
-    if counted_lst[0] == counted_lst[1] or counted_lst[0] == counted_lst[2] or counted_lst[1] == counted_lst[2]:
+    counted = Counter(lst)
+    if counted[0] == counted[1] or counted[0] == counted[2] or counted[1] == counted[2]:
         return None
     elif lst.count(-1) > lst.count(0) and lst.count(-1) > lst.count(1):
         return -1
