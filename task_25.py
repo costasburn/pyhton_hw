@@ -1,14 +1,9 @@
 import random
 
 def shuffle_list(list_to_shuffle):
-    repeat = random.randint(2, 100)
-    while repeat > 0:
-        for i in range(1, len(list_to_shuffle)):
-            for j in range(1, len(list_to_shuffle) - i):
-                temp = list_to_shuffle[i]
-                list_to_shuffle[i] = list_to_shuffle[j]
-                list_to_shuffle[j] = temp
-        repeat -= 1
+    for i in range(len(list_to_shuffle)):
+        k = random.randint(0, len(list_to_shuffle)-1)
+        list_to_shuffle[k], list_to_shuffle[i] = list_to_shuffle[i], list_to_shuffle[k]
     return list_to_shuffle
 
 
