@@ -16,12 +16,12 @@ text = """Принципиально новый взгляд на развити
 
 Мы стремимся к чему-то большему, к принципиально новым и лучшим способам организации совместной работы людей. Но действительно ли такое возможно или это просто несбыточные мечты? Если все-таки организации, способные более полно раскрывать потенциал человека, могут быть созданы, то как они должны выглядеть? Как вдохнуть в них жизнь? Вот вопросы, лежащие в основе этой книги."""
 
+
 def pemrtuate(text):
     words = re.findall(r'\w+', text)
     shuffled_text = ''
-    for j in range(0, len(words)):
-        the_word = words[j]
-        if len(the_word) == 1:
+    for the_word in words:
+        if len(the_word) <= 3:
             shuffled_word = the_word + ' '
             shuffled_text += shuffled_word
             continue
@@ -29,7 +29,8 @@ def pemrtuate(text):
         start = 0
         stop = 3
         shuffled_word = ''
-        for i in range(0, len(mid), 3):
+        shuffle_step = 3
+        for i in range(0, len(mid), shuffle_step):
             to_shuffle = list(mid[start + i: stop + i])
             random.shuffle(to_shuffle)
             to_shuffle = ''.join(to_shuffle)
@@ -37,8 +38,9 @@ def pemrtuate(text):
         shuffled_word = the_word[0] + shuffled_word + the_word[-1] + ' '
         shuffled_text += shuffled_word
     shuffled_text_words = re.findall('\w+', shuffled_text)
+    words_to_replace = re.findall('\w+', text)
     for word_index in range(len(shuffled_text_words)):
-        text = text.replace(re.findall('\w+', text)[word_index], shuffled_text_words[word_index])
+        text = text.replace(words_to_replace[word_index], shuffled_text_words[word_index])
     return text
 
 
