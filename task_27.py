@@ -16,26 +16,30 @@ text = """Принципиально новый взгляд на развити
 
 Мы стремимся к чему-то большему, к принципиально новым и лучшим способам организации совместной работы людей. Но действительно ли такое возможно или это просто несбыточные мечты? Если все-таки организации, способные более полно раскрывать потенциал человека, могут быть созданы, то как они должны выглядеть? Как вдохнуть в них жизнь? Вот вопросы, лежащие в основе этой книги."""
 
-words = re.findall(r'\w+', text)
-shuffled_text = ''
-for j in range(0, len(words)):
-    the_word = words[j]
-    if len(the_word) == 1:
-        shuffled_word = the_word + ' '
+def pemrtuate(text):
+    words = re.findall(r'\w+', text)
+    shuffled_text = ''
+    for j in range(0, len(words)):
+        the_word = words[j]
+        if len(the_word) == 1:
+            shuffled_word = the_word + ' '
+            shuffled_text += shuffled_word
+            continue
+        mid = the_word[1:-1]
+        start = 0
+        stop = 3
+        shuffled_word = ''
+        for i in range(0, len(mid), 3):
+            to_shuffle = list(mid[start + i: stop + i])
+            random.shuffle(to_shuffle)
+            to_shuffle = ''.join(to_shuffle)
+            shuffled_word += to_shuffle
+        shuffled_word = the_word[0] + shuffled_word + the_word[-1] + ' '
         shuffled_text += shuffled_word
-        continue
-    mid = the_word[1:-1]
-    start = 0
-    stop = 3
-    shuffled_word = ''
-    for i in range(0, len(mid), 3):
-        to_shuffle = list(mid[start + i: stop + i])
-        random.shuffle(to_shuffle)
-        to_shuffle = ''.join(to_shuffle)
-        shuffled_word += to_shuffle
-    shuffled_word = the_word[0] + shuffled_word + the_word[-1] + ' '
-    shuffled_text += shuffled_word
-shuffled_text_words = re.findall('\w+', shuffled_text)
-for word_index in range(len(shuffled_text_words)):
-    text = text.replace(re.findall('\w+', text)[word_index], shuffled_text_words[word_index])
-print(text)
+    shuffled_text_words = re.findall('\w+', shuffled_text)
+    for word_index in range(len(shuffled_text_words)):
+        text = text.replace(re.findall('\w+', text)[word_index], shuffled_text_words[word_index])
+    return text
+
+
+print(pemrtuate(text))
