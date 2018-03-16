@@ -1,5 +1,7 @@
+import string
+
 def encode(str_to_encode):
-    encrypt_table = 'abcdefghijklmnopqrstuvwxyz0123456789'
+    encrypt_table = string.ascii_lowercase + string.digits
     lower_input = str_to_encode.lower()
     result = ''
     encryption_interval = 5
@@ -8,7 +10,7 @@ def encode(str_to_encode):
         if position != -1 and encryption_interval + position < len(encrypt_table):
             result += encrypt_table[position + encryption_interval]
         elif encryption_interval + position >= len(encrypt_table):
-            result += encrypt_table[(encryption_interval + position) - len(encrypt_table)]
+            result += encrypt_table[(encryption_interval + position) % len(encrypt_table)]
         else:
             result += lower_input[i]
     return result
