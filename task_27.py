@@ -37,11 +37,11 @@ def pemrtuate(text):
             shuffled_word += to_shuffle
         shuffled_word = the_word[0] + shuffled_word + the_word[-1] + ' '
         shuffled_text += shuffled_word
-    shuffled_text_words = re.findall('\w+', shuffled_text)
-    words_to_replace = re.findall('\w+', text)
-    for word_index in range(len(shuffled_text_words)):
-        text = text.replace(words_to_replace[word_index], shuffled_text_words[word_index])
+    shuffled_text_list = shuffled_text.split()
+    for word_index in range(len(shuffled_text_list)):
+        text = text.replace(words[word_index], shuffled_text_list[word_index])
     return text
 
 
 print(pemrtuate(text))
+
