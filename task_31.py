@@ -99,10 +99,10 @@ def find_by_additional_info():
     found = False
     for entry in phone_book:
         if len(entry) > standard_lenght:
-            extra_length = len(entry) % standard_lenght
-            list_entry = list(entry)
-            for i in range(extra_length):
-                if entry[list_entry[standard_lenght + i]] == search_info:
+            extra_length = len(entry) - standard_lenght
+            keys = list(entry)
+            for key in keys[standard_lenght:]:
+                if entry[key] == search_info:
                     print_entry(idx, entry)
                     idx += 1
                     found = True
@@ -113,9 +113,16 @@ def find_by_additional_info():
 
 #------------------------------------------------------------------------------
 def delete_entry_name_phonebook(phone_book_to_amend=phone_book):
-    name = str(input("    Enter name of the contact you want to delete: "))
-    phone_book = [entry for entry in phone_book_to_amend if entry["name"] != name]
-    print_phonebook(phone_book)
+    name_to_delete = str(input("    Enter name of the contact you want to delete: "))
+    found = False
+    for entry in phone_book:
+        if entry['name'] == name_to_delete:
+            phone_book.remove(entry)
+            print("The contact has been found and delted from Phone Book.")
+            found = True
+    if not found:
+        printError("Not found!!")
+
 
 
 
