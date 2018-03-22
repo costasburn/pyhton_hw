@@ -31,7 +31,6 @@ titanic_data = """1,0,3,"Braund, Mr. Owen Harris",male,22,1,0,A/5 21171,7.25,,S
 # Fare = []
 # Cabin = []
 # Embarked = []
-#
 # columns = [PassengerId, Survived, Pclass, Name, Sex, Age, SibSp, Parch, Ticket, Fare, Cabin, Embarked]
 
 def csv_reader(file_obj):
