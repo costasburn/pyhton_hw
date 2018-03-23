@@ -32,20 +32,19 @@ titanic_data = get_data_from_csv(titanic)
 
 def distribution_of_survivals(titanic_data, field_name):
     totals = {}
+    survived = {}
+
     for person in titanic_data:
         totals[person[field_name]] = totals.get(person[field_name], 0) + 1
-
-
-    survived = {}
-    for person in titanic_data:
         if person["Survived"] == "1":
             survived[person[field_name]] = survived.get(person[field_name], 0) + 1
 
-
-    for key_total, value_total in totals.items():
-        for key_survived, value_survived in survived.items():
-            if key_total == key_survived:
-                print("Survival rate in %s %s: %.2f%%" % (field_name, key_total, value_survived / value_total * 100))
+    for key_survived, value_survived in survived.items():
+        print("Survival rate in %s %s: %.2f%%" % (field_name, key_survived, value_survived / totals[key_survived] * 100))
+    # for key_total, value_total in totals.items():
+    #     for key_survived, value_survived in survived.items():
+    #         if key_total == key_survived:
+    #             print("Survival rate in %s %s: %.2f%%" % (field_name, key_total, value_survived / value_total * 100))
 
 
 
