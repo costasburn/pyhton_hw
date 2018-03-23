@@ -1,4 +1,24 @@
 import csv
+
+# persons = [
+#     {'name': 'Alice', 'age': 23, 'gender': 'f'},
+#     {'name': 'Bob', 'age': 22, 'gender': 'm'},
+#     {'name': 'Stacy', 'age': 33, 'gender': 'f'},
+#     {'name': 'Clark', 'age': 43, 'gender': 'm'},
+#     {'name': 'Bill', 'age': 42, 'gender': 'm'}]
+#
+# totals = {}
+# field = 'gender'
+# for person in persons:
+#     totals[person[field]] = totals.get(person[field], 0) + 1
+#
+#
+# print('Gender distribution:')
+# for k, v in totals.items():
+#     print('%s: %.2f%%' % (k, v / len(persons) * 100))
+
+
+
 titanic = r'C:\Users\Konstantin\IdeaProjects\pyhton_hw\titanic_data.csv'
 
 def get_data_from_csv(path):
@@ -11,37 +31,26 @@ titanic_data = get_data_from_csv(titanic)
 
 
 def distribution_of_survivals(titanic_data, field_name):
-    # finding quontity of groups in the field
-    list_of_groups_with_dublicates = []
-    for passanger in titanic_data:
-        list_of_groups_with_dublicates.append(passanger[field_name])
-    list_of_groups = sorted(list(set(list_of_groups_with_dublicates)))
+    totals = {}
+    for person in titanic_data:
+        totals[person[field_name]] = totals.get(person[field_name], 0) + 1
 
-    # finding total persons in each group
-    total = []
-    for group in list_of_groups:
-        group = []
-        total.append(group)
-    for passanger in titanic_data:
-        for idx in range(len(list_of_groups)):
-            if passanger[field_name] == list_of_groups[idx]:
-                total[idx].append(passanger)
 
-    # finding survivals in each group
-    survived = list(total)
-    for i in range(len(list_of_groups)):
-        temp_var = [passanger for passanger in total[i] if passanger["Survived"] == "1"]
-        survived[i] = temp_var
+    survived = {}
+    for person in titanic_data:
+        if person["Survived"] == "1":
+            survived[person[field_name]] = survived.get(person[field_name], 0) + 1
 
-    # comparing and printing out
-    for i in range(len(list_of_groups)):
-        percentage_survived = (len(survived[i]) / len(total[i])) * 100
-        print("Among {} {}: {}% of people survived".format(field_name, list_of_groups[i], percentage_survived))
+
+    for key_total, value_total in totals.items():
+        for key_survived, value_survived in survived.items():
+            if key_total == key_survived:
+                print("Survival rate in %s %s: %.2f%%" % (field_name, key_total, value_survived / value_total * 100))
 
 
 
 
 
 
-field_name = "Age"
+field_name = "Pclass"
 distribution_of_survivals(titanic_data, field_name)
