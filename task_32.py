@@ -9,57 +9,39 @@ def get_data_from_csv(path):
 
 titanic_data = get_data_from_csv(titanic)
 
-survived_list = []
-survived_m = []
-survived_w = []
-survived_1class = []
-survived_2class = []
-survived_3class = []
 
-total_m = []
-total_w = []
-total_1class = []
-total_2class = []
-total_3class = []
+def distribution_of_survivals(titanic_data, field_name):
+    # finding quontity of groups in the field
+    list_of_groups_with_dublicates = []
+    for passanger in titanic_data:
+        list_of_groups_with_dublicates.append(passanger[field_name])
+    list_of_groups = sorted(list(set(list_of_groups_with_dublicates)))
 
-for passenger in titanic_data:
-    if passenger["Survived"] == "1":
-        survived_list.append(passenger)
-for passenger in survived_list:
-    if passenger["Sex"] == "male":
-        survived_m.append(passenger)
-    if passenger["Sex"] == "female":
-        survived_w.append(passenger)
-    if passenger["Pclass"] == "1":
-        survived_1class.append(passenger)
-    if passenger["Pclass"] == "2":
-        survived_2class.append(passenger)
-    elif passenger["Pclass"] == "3":
-        survived_3class.append(passenger)
+    # finding total persons in each group
+    total = []
+    for group in list_of_groups:
+        group = []
+        total.append(group)
+    for passanger in titanic_data:
+        for idx in range(len(list_of_groups)):
+            if passanger[field_name] == list_of_groups[idx]:
+                total[idx].append(passanger)
 
-for passenger in titanic_data:
-    if passenger["Sex"] == "male":
-        total_m.append(passenger)
-    if passenger["Sex"] == "female":
-        total_w.append(passenger)
-    if passenger['Pclass'] == "1":
-        total_1class.append(passenger)
-    if passenger["Pclass"] == "2":
-        total_2class.append(passenger)
-    elif passenger["Pclass"] == "3":
-        total_3class.append(passenger)
+    # finding survivals in each group
+    survived = list(total)
+    for i in range(len(list_of_groups)):
+        temp_var = [passanger for passanger in total[i] if passanger["Survived"] == "1"]
+        survived[i] = temp_var
 
-men_survive_rate = (len(survived_m) / len(total_m)) * 100
-print("{}% of men survived".format(men_survive_rate))
+    # comparing and printing out
+    for i in range(len(list_of_groups)):
+        percentage_survived = (len(survived[i]) / len(total[i])) * 100
+        print("Among {} {}: {}% of people survived".format(field_name, list_of_groups[i], percentage_survived))
 
-wmen_survive_rate = (len(survived_w) / len(total_w)) * 100
-print("{}% of women survived".format(wmen_survive_rate))
 
-first_class_survive_rate = (len(survived_1class) / len(total_1class) * 100)
-print("{}% of first class survived".format(first_class_survive_rate))
 
-second_class_survive_rate = (len(survived_2class) / len(total_2class) * 100)
-print("{}% of second class survived".format(second_class_survive_rate))
 
-third_class_survive_rate = (len(survived_3class) / len(total_3class) * 100)
-print("{}% of third class survived".format(third_class_survive_rate))
+
+
+field_name = "Age"
+distribution_of_survivals(titanic_data, field_name)
