@@ -1,0 +1,9 @@
+a = 8
+b = 6
+c = 2
+sub_task_one = (a + b * c) ** 2
+print("({} + {} * {}) ^2 = {}".format(a, b, c, sub_task_one))
+sub_task_two = a - 4 * b / c
+print("{} - 4 * {} / {} = {}".format(a, b, c, sub_task_two))
+sub_task_three = (a * b + 4)/(c - 1)
+print("({} * {} + 4)/({} - 1) = {}".format(a, b, c, sub_task_three))
