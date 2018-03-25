@@ -1,19 +1,22 @@
-import random
-
-class Godzilla(object):
+class Godzilla():
 
     def __init__(self, stomach_vol):
         self.stomach_vol = stomach_vol
+        self.stomach_remaining_space = stomach_vol
         self.stomach_full = False
 
-    def eat_people(self):
-        while self.stomach_vol > 10:
-            victims_weight = random.randint(0, self.stomach_vol)
-            self.stomach_vol -= victims_weight
-            print("Kesha has eaten 1 man, remaining stomach vol: {}".format(self.stomach_vol))
-        print("Kesha is not hungry anymore")
+    def eat(self, humans_weight):
+        self.stomach_remaining_space -= humans_weight
+        return self.stomach_remaining_space
 
+    def is_full(self):
+        if self.stomach_remaining_space <= self.stomach_vol * 0.1:
+            self.stomach_full = True
+            return True
+        else:
+            return False
 
 Kesha = Godzilla(100)
-print(Kesha.eat_people())
+print(Kesha.eat(90))
+print(Kesha.is_full())
 
