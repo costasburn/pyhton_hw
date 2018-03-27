@@ -1,7 +1,7 @@
 import math
 
 
-class circle():
+class Circle:
 
     def __init__(self, rad, centr_x, centr_y):
         self.centr_x = centr_x
@@ -10,20 +10,17 @@ class circle():
 
     def is_inside(self, point):
         dist = math.hypot(point.x - self.centr_x, point.y - self.centr_y)
-        if dist < self.rad:
-            return True
-        else:
-            return False
+        return dist < self.rad
 
 
-class point():
+class Point:
 
     def __init__(self, x, y):
         self.x = x
         self.y = y
 
 
-my_circle = circle(5, 1, 2)
-my_point = point(6, 2)
+my_circle = Circle(5, 1, 2)
+my_point = Point(6, 2)
 print(my_circle.is_inside(my_point))
 
