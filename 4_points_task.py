@@ -30,9 +30,7 @@ def swap_max_min(lower_limit, upper_limit, quantity_of_numbers):
     print(random_list)
     max_num_index = random_list.index(max(random_list))
     min_num_index = random_list.index(min(random_list))
-    max_num = max(random_list)
-    min_num = min(random_list)
-    random_list[max_num_index], random_list[min_num_index] = min_num, max_num
+    random_list[max_num_index], random_list[min_num_index] = random_list[min_num_index], random_list[max_num_index]
     return random_list
 
 print(swap_max_min(0, 100, 10))
@@ -44,9 +42,9 @@ print("*" * 20)
 def normilize_list(lower_limit, upper_limit, quantity_of_numbers):
     random_list = [random.randint(lower_limit, upper_limit) for _ in range(quantity_of_numbers)]
     print(random_list)
-    norm_range = range(-1, 1)
+    norm_range = (-1, 1)
     max_list_value = max(abs(max(random_list)), abs(min(random_list)))
-    max_range_value = max(abs(list(norm_range)[-1]), abs(list(norm_range)[0]))
+    max_range_value = max(abs(norm_range[0]), abs(norm_range[-1]))
     ratio = max_range_value / max_list_value
     normalized_list = [elem * ratio for elem in random_list]
     return normalized_list
