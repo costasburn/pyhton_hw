@@ -1,22 +1,30 @@
-class Godzilla():
+class Godzilla:
+    STOMACH_VOL = 100
+    STOMACH_FILL_LIMIT = STOMACH_VOL * 0.1
 
-    def __init__(self, stomach_vol):
-        self.stomach_vol = stomach_vol
-        self.stomach_remaining_space = stomach_vol
-        self.stomach_full = False
+    def __init__(self):
+        self.stomach_remaining_space = self.STOMACH_VOL
 
     def eat(self, humans_weight):
-        self.stomach_remaining_space -= humans_weight
-        return self.stomach_remaining_space
+        if self.is_full():
+            print("Already full")
+            return self.stomach_remaining_space
+        elif humans_weight >= self.stomach_remaining_space:
+            print("Human is too heavy")
+            return self.stomach_remaining_space
+        else:
+            self.stomach_remaining_space -= humans_weight
+            return self.stomach_remaining_space
 
     def is_full(self):
-        if self.stomach_remaining_space <= self.stomach_vol * 0.1:
-            self.stomach_full = True
+        if self.stomach_remaining_space <= self.STOMACH_FILL_LIMIT:
             return True
         else:
             return False
 
-Kesha = Godzilla(100)
-print(Kesha.eat(90))
-print(Kesha.is_full())
 
+Kesha = Godzilla()
+print(Kesha.eat(50))
+print(Kesha.eat(45))
+print(Kesha.eat(1))
+print(Kesha.is_full())
