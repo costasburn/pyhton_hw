@@ -21,18 +21,15 @@ print("Task 5")
 print("*" * 20)
 
 def which_is_closer():
-    user_number_one = input("Enter any number: ")
-    user_number_two = input("Enter another number: ")
-    if user_number_one.isnumeric() and user_number_two.isnumeric():
-        if abs(int(user_number_one) - 10) < abs(int(user_number_two) - 10):
-            print(user_number_one)
-        elif abs(int(user_number_one) - 10) == abs(int(user_number_two) - 10):
-            print("They are equal")
-        else:
-            print(user_number_two)
-
+    closure_value = 10
+    user_number_one = int(input("Enter any number: "))
+    user_number_two = int(input("Enter another number: "))
+    if abs(int(user_number_one) - closure_value) < abs(int(user_number_two) - closure_value):
+        print(user_number_one)
+    elif abs(int(user_number_one) - closure_value) == abs(int(user_number_two) - closure_value):
+        print("They are equal")
     else:
-        print("Error")
+        print(user_number_two)
 
 which_is_closer()
 
