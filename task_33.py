@@ -28,3 +28,4 @@ print(Kesha.eat(50))
 print(Kesha.eat(45))
 print(Kesha.eat(1))
 print(Kesha.is_full())
+
