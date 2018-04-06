@@ -21,7 +21,7 @@ class Store:
             return self._stock[item_to_sell]
         else:
             Report.not_found(self, item=item_to_sell)
-            return 0
+            return False, None
 
     def balance(self, item=None, balance_time=None):
         if item and balance_time and item in self._stock:
@@ -34,7 +34,7 @@ class Store:
             return Report.print_stock(self, self._stock)
         else:
             Report.not_found(self, item=item)
-            return 0
+            return False, None
 
 
 class Item:
@@ -189,6 +189,7 @@ class SaleInvoiceJournal:
                         post_quantity_sold_total += post_quantity_sold_single_invoice
                 if post_quantity_sold_total > balance_before - quantity_sold:
                     Report.not_found(self, item=item)
+                    return False, None
                 else:
                     SaleInvoiceJournal.invoices.append(new_invoice)
             else:
@@ -196,6 +197,7 @@ class SaleInvoiceJournal:
             return new_invoice
         else:
             Report.not_found(self, item=item)
+            return False, None
 
     def remove_invoice(self, invoice_id):
         for invoice in SaleInvoiceJournal.invoices:
@@ -224,6 +226,7 @@ class Invoice:
             self.records['Sell price'].append(item.sell_price)
         else:
             Report.not_found(self, item=item)
+            return False, None
 
     def remove_item_from_invoice(self, item):
         if item.name in self.records['Item']:
@@ -233,6 +236,7 @@ class Invoice:
             self.records['Sell price'].remove(item.sell_price)
         else:
             Report.not_found(self, item=item)
+            return False, None
 
     def print_info(self, invoices):
         Report.print_invoice(invoices=invoices)
