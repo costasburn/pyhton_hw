@@ -161,21 +161,18 @@ class SaleInvoiceJournal:
         self.journal_name = journal_name
 
     def get_invoices(self, date1=None, date2=None):
-        result = []
-        print(SaleInvoiceJournal.invoices)
         if date1 and date2:
             for invoice in SaleInvoiceJournal.invoices:
                 if date1 < invoice.time_of_invoice.date() < date2:
-                    result.append(invoice)
+                    yield invoice
         if date1 and not date2:
             for invoice in SaleInvoiceJournal.invoices:
                 if date1 < invoice.time_of_invoice.date():
-                    result.append(invoice)
+                    yield invoice
         if date2 and not date1:
             for invoice in SaleInvoiceJournal.invoices:
                 if invoice.time_of_invoice.date() < date2:
-                    result.append(invoice)
-        return result
+                    yield invoice
 
     def add_invoice(self, item, quantity_sold, store, time_of_invoice_to_add=datetime.datetime.now()):
         balance_before = store.balance(item=item, balance_time=time_of_invoice_to_add)
@@ -280,4 +277,4 @@ new_report.print_invoice(invoices=my_invoice)
 my_invoice.add_item_to_invoice(item=Mobile, quantity=2, store=new_store)
 new_report.print_invoice(invoices=my_invoice)
 my_invoice.remove_item_from_invoice(item=Mobile)
-new_report.print_invoice(invoices=my_invoice)
+new_report.print_invoice(invoices=new_list_of_invoices)
