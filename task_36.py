@@ -137,7 +137,7 @@ class Report:
                     "\nQuantity sold:   {}".format(invoice.records['ID'], invoice.records['Time'],
                                                    invoice.records['Item'], invoice.records['Quantity']))
                 print()
-        except:
+        except TypeError:
             print(
                 "Invoice ID:        {}"
                 "\nTime:            {}"
